@@ -1,0 +1,288 @@
+{
+  "strip": {
+    "3": {
+      "total_s": 0.00035900000000310683,
+      "best_k": 3,
+      "k_times": {}
+    },
+    "4": {
+      "total_s": 5.4499999976087565e-05,
+      "best_k": 4,
+      "k_times": {}
+    },
+    "5": {
+      "total_s": 6.51999999945474e-05,
+      "best_k": 5,
+      "k_times": {}
+    },
+    "6": {
+      "total_s": 6.369999999833453e-05,
+      "best_k": 6,
+      "k_times": {}
+    },
+    "7": {
+      "total_s": 6.559999997080013e-05,
+      "best_k": 7,
+      "k_times": {}
+    },
+    "8": {
+      "total_s": 6.630000001450753e-05,
+      "best_k": 8,
+      "k_times": {}
+    }
+  },
+  "monotone": {
+    "3": {
+      "total_s": 0.025468199999522767,
+      "best_k": 3,
+      "k_times": {
+        "1": 3.49000001733657e-05,
+        "2": 6.24999993306119e-05,
+        "3": 0.0001250000004802132
+      },
+      "k_status": {
+        "1": "dokazano neizvedljiv (naravno izčrpano)",
+        "2": "dokazano neizvedljiv (naravno izčrpano)",
+        "3": "FEASIBLE"
+      }
+    },
+    "4": {
+      "total_s": 0.026591599998937454,
+      "best_k": 4,
+      "k_times": {
+        "2": 6.53000006423099e-05,
+        "3": 0.00016540000069653615,
+        "4": 0.0008797999998932937
+      },
+      "k_status": {
+        "2": "dokazano neizvedljiv (naravno izčrpano)",
+        "3": "dokazano neizvedljiv (naravno izčrpano)",
+        "4": "FEASIBLE"
+      }
+    },
+    "5": {
+      "total_s": 0.04595870000048308,
+      "best_k": 5,
+      "k_times": {
+        "2": 6.950000170036219e-05,
+        "3": 0.00017719999959808774,
+        "4": 0.00043870000081369653,
+        "5": 0.01115380000010191
+      },
+      "k_status": {
+        "2": "dokazano neizvedljiv (naravno izčrpano)",
+        "3": "dokazano neizvedljiv (naravno izčrpano)",
+        "4": "dokazano neizvedljiv (naravno izčrpano)",
+        "5": "FEASIBLE"
+      }
+    },
+    "6": {
+      "total_s": 0.24779699999999139,
+      "best_k": 6,
+      "k_times": {
+        "2": 7.949999962875154e-05,
+        "3": 0.00028959999872313347,
+        "4": 0.0006824000010965392,
+        "5": 0.0014886000008118572,
+        "6": 0.19441069999993488
+      },
+      "k_status": {
+        "2": "dokazano neizvedljiv (naravno izčrpano)",
+        "3": "dokazano neizvedljiv (naravno izčrpano)",
+        "4": "dokazano neizvedljiv (naravno izčrpano)",
+        "5": "dokazano neizvedljiv (naravno izčrpano)",
+        "6": "FEASIBLE"
+      }
+    },
+    "7": {
+      "total_s": 3.141573100001551,
+      "best_k": 7,
+      "k_times": {
+        "3": 0.0002939000005426351,
+        "4": 0.0006534999993164092,
+        "5": 0.0016013000004022615,
+        "6": 0.004077599998709047,
+        "7": 3.0937340000000404
+      },
+      "k_status": {
+        "3": "dokazano neizvedljiv (naravno izčrpano)",
+        "4": "dokazano neizvedljiv (naravno izčrpano)",
+        "5": "dokazano neizvedljiv (naravno izčrpano)",
+        "6": "dokazano neizvedljiv (naravno izčrpano)",
+        "7": "FEASIBLE"
+      }
+    },
+    "8": {
+      "total_s": 60.03492299999925,
+      "best_k": 8,
+      "k_times": {
+        "3": 0.00039089999881980475,
+        "4": 0.0005870999993931036,
+        "5": 0.001994399999603047,
+        "6": 0.0046184000002540415,
+        "7": 0.012492700001530466,
+        "8": 59.96419229999992
+      },
+      "k_status": {
+        "3": "dokazano neizvedljiv (naravno izčrpano)",
+        "4": "dokazano neizvedljiv (naravno izčrpano)",
+        "5": "dokazano neizvedljiv (naravno izčrpano)",
+        "6": "dokazano neizvedljiv (naravno izčrpano)",
+        "7": "dokazano neizvedljiv (naravno izčrpano)",
+        "8": "FEASIBLE"
+      }
+    }
+  },
+  "polite": {
+    "3": {
+      "total_s": 0.027062600000135717,
+      "best_k": 3,
+      "k_times": {
+        "1": 0.00019950000023527537,
+        "2": 0.0008015000003069872,
+        "3": 0.002315699999599019
+      },
+      "k_status": {
+        "1": "[polite] n=3: k=1 dokazano neizvedljiv (naravno izčrpano).",
+        "2": "[polite] n=3: k=2 dokazano neizvedljiv (naravno izčrpano).",
+        "3": "[polite] n=3: k=3 FEASIBLE."
+      }
+    },
+    "4": {
+      "total_s": 0.16173279999929946,
+      "best_k": 4,
+      "k_times": {
+        "2": 0.0024970999984361697,
+        "3": 0.02314509999996517,
+        "4": 0.11040420000063023
+      },
+      "k_status": {
+        "2": "[polite] n=4: k=2 dokazano neizvedljiv (naravno izčrpano).",
+        "3": "[polite] n=4: k=3 dokazano neizvedljiv (naravno izčrpano).",
+        "4": "[polite] n=4: k=4 FEASIBLE."
+      }
+    },
+    "5": {
+      "total_s": 9.189074699999765,
+      "best_k": 5,
+      "k_times": {
+        "2": 0.007221399999252753,
+        "3": 0.07590089999939664,
+        "4": 1.0240560000002006,
+        "5": 8.044546000000992
+      },
+      "k_status": {
+        "2": "[polite] n=5: k=2 dokazano neizvedljiv (naravno izčrpano).",
+        "3": "[polite] n=5: k=3 dokazano neizvedljiv (naravno izčrpano).",
+        "4": "[polite] n=5: k=4 dokazano neizvedljiv (naravno izčrpano).",
+        "5": "[polite] n=5: k=5 FEASIBLE."
+      }
+    },
+    "6": {
+      "total_s": 635.6405243999998,
+      "best_k": 6,
+      "k_times": {
+        "2": 0.018606700001328136,
+        "3": 0.21347249999962514,
+        "4": 3.076178000001164,
+        "5": 47.075259400000505,
+        "6": 585.2063354999991
+      },
+      "k_status": {
+        "2": "[polite] n=6: k=2 dokazano neizvedljiv (naravno izčrpano).",
+        "3": "[polite] n=6: k=3 dokazano neizvedljiv (naravno izčrpano).",
+        "4": "[polite] n=6: k=4 dokazano neizvedljiv (naravno izčrpano).",
+        "5": "[polite] n=6: k=5 dokazano neizvedljiv (naravno izčrpano).",
+        "6": "[polite] n=6: k=6 FEASIBLE."
+      }
+    },
+    "7": {
+      "total_s": null,
+      "best_k": null,
+      "k_times": {
+        "3": 0.29353262498625554,
+        "4": 4.3801813749887515,
+        "5": 75.19918245801819,
+        "6": 1319.3654327499971
+      },
+      "k_status": {
+        "3": "[polite] n=7: k=3 dokazano neizvedljiv (naravno izčrpano).",
+        "4": "[polite] n=7: k=4 dokazano neizvedljiv (naravno izčrpano).",
+        "5": "[polite] n=7: k=5 dokazano neizvedljiv (naravno izčrpano).",
+        "6": "[polite] n=7: k=6 dokazano neizvedljiv (naravno izčrpano)."
+      }
+    }
+  },
+  "caffeinated": {
+    "3": {
+      "total_s": 0.029125000000931323,
+      "best_k": 3,
+      "k_times": {
+        "1": 0.00017950000074051786,
+        "2": 0.0004803000010724645,
+        "3": 0.0011101000000053318
+      },
+      "k_status": {
+        "1": "[caffeinated] n=3: k=1 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "2": "[caffeinated] n=3: k=2 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "3": "[caffeinated] n=3: k=3 FEASIBLE (non-stacked)."
+      }
+    },
+    "4": {
+      "total_s": 0.39763610000045446,
+      "best_k": 4,
+      "k_times": {
+        "2": 0.0020564000005833805,
+        "3": 0.09323629999926197,
+        "4": 0.27528090000123484
+      },
+      "k_status": {
+        "2": "[caffeinated] n=4: k=2 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "3": "[caffeinated] n=4: k=3 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "4": "[caffeinated] n=4: k=4 FEASIBLE (non-stacked)."
+      }
+    },
+    "5": {
+      "total_s": 39.96498109999993,
+      "best_k": 4,
+      "k_times": {
+        "2": 0.008371199999601231,
+        "3": 0.6837279999999737,
+        "4": 39.24364250000144
+      },
+      "k_status": {
+        "2": "[caffeinated] n=5: k=2 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "3": "[caffeinated] n=5: k=3 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "4": "[caffeinated] n=5: k=4 FEASIBLE (non-stacked)."
+      }
+    },
+    "6": {
+      "total_s": 20174.113548399997,
+      "best_k": 5,
+      "k_times": {
+        "2": 0.024092600000585662,
+        "3": 2.34648130000096,
+        "4": 272.7988749999986,
+        "5": 19898.8948131
+      },
+      "k_status": {
+        "2": "[caffeinated] n=6: k=2 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "3": "[caffeinated] n=6: k=3 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "4": "[caffeinated] n=6: k=4 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "5": "[caffeinated] n=6: k=5 FEASIBLE (non-stacked)."
+      }
+    },
+    "7": {
+      "total_s": null,
+      "best_k": null,
+      "k_times": {
+        "3": 2.7947451249929145,
+        "4": 609.9828955419944
+      },
+      "k_status": {
+        "3": "[caffeinated] n=7: k=3 dokazano neizvedljiv (non-stacked, naravno izčrpano).",
+        "4": "[caffeinated] n=7: k=4 dokazano neizvedljiv (non-stacked, naravno izčrpano)."
+      }
+    }
+  }
+}

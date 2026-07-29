@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Levi &amp; kontaminacija — simulator</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+
+<!-- ============ LANDING ============ -->
+<div id="page-landing" class="page active">
+  <div class="landing-wrap">
+    <h1 class="landing-title">Levi &amp; kontaminacija</h1>
+    <div class="landing-sub">Izberi način:</div>
+    <div class="landing-cards">
+      <button class="landing-card" id="go-intro">
+        <div class="icon"><i class="fa-solid fa-circle-info"></i></div>
+        <div class="card-title">O problemu</div>
+        <div class="card-desc">Kratka razlaga problema levov in kontaminacije — pravila, modeli in osnovni pojmi.</div>
+      </button>
+      <button class="landing-card" id="go-future">
+        <div class="icon"><i class="fa-solid fa-book"></i></div>
+        <div class="card-title">Konstrukcije iz literature</div>
+        <div class="card-desc">Strip sweep in stena trikotnikov na paralelogramu R<sub>n,l</sub> (Adams et al.).</div>
+      </button>
+      <button class="landing-card" id="go-results">
+        <div class="icon"><i class="fa-solid fa-list"></i></div>
+        <div class="card-title">Rezultati</div>
+        <div class="card-desc">Predogled vseh izračunanih rešitev — izberi strategijo in n ter zaženi simulacijo.</div>
+      </button>
+      <button class="landing-card" id="go-game">
+        <div class="icon"><i class="fa-solid fa-chess-knight"></i></div>
+        <div class="card-title">Interaktivna igra</div>
+        <div class="card-desc">Sam postavi leve in jih premikaj po mreži — preizkusi različne strategije.</div>
+      </button>
+      <button class="landing-card" id="go-extensions">
+        <div class="icon"><i class="fa-solid fa-shuffle"></i></div>
+        <div class="card-title">Razširitve</div>
+        <div class="card-desc">Drugi grafi (krog, kolobar) in trije naključni boti — naključno, brez prekrivanja, proti kontaminaciji.</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ O PROBLEMU ============ -->
+<div id="page-intro" class="page">
+  <div class="topbar">
+    <button class="btn-ghost" id="intro-back"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Nazaj</button>
+    <span class="title">O problemu</span>
+    <div class="spacer"></div>
+  </div>
+  <div class="filters" style="padding-top:10px; max-width: 1500px;">
+    <div class="intro-cols">
+      <!-- Levi stolpec: definicija + modeli + primerjava -->
+      <div class="intro-col">
+        <h2 style="margin-top: 0;">Levi in kontaminacija</h2>
+        <p class="sub" style="line-height:1.55;">
+          <strong>Levi in kontaminacija</strong> je problem zasledovanja in izogibanja na grafih.
+          Na začetku so vsa vozlišča grafa <em>kontaminirana</em>, razen tistih, ki jih zasedajo
+          levi. V vsakem koraku se levi premaknejo po povezavah grafa in očistijo vozlišča, na katera
+          stopijo. Hkrati se kontaminacija razširi z vsakega kontaminiranega vozlišča na vsa sosednja
+          neočiščena vozlišča, z izjemo tistih, na katerih stoji lev, in tistih, do katerih bi
+          se širila po povezavi, čez katero je v istem koraku prešel lev.
+          V sklopu diplomske naloge raziskujem vprašanje: <strong>najmanj koliko levov</strong>
+          potrebujemo, da popolnoma očistimo dani graf, neodvisno od izhodišča?
+        </p>
+
+        <h3 style="margin-top: 1.5em;">Modeli gibanja levov</h3>
+        <ul style="line-height:1.55;">
+          <li><strong>Vljudni model</strong> — v vsakem koraku se premakne <em>kvečjemu en</em> lev.</li>
+          <li><strong>Kofeinirani model</strong> — v vsakem koraku se mora premakniti <em>vsak</em> lev.</li>
+          <li><strong>Monotoni model</strong> — očiščeno vozlišče se ne sme ponovno kontaminirati.</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5em;">Primerjava: vljuden in kofeiniran model</h3>
+        <p class="sub" style="line-height:1.55;">
+          Spodaj je prikazana animacija obeh modelov na trikotniku P<sub>3</sub> s
+          tremi levi. Pri <strong>vljudnemu</strong> modelu se v vsakem koraku premakne natanko en lev;
+          pri <strong>kofeiniranem</strong> pa se morajo premakniti vsi levi hkrati, kar lahko sproži
+          ponovno kontaminacijo prej očiščenih vozlišč. Spodaj prikazan vljuden model je prav tako
+          <strong>monoton</strong>, saj se očiščena vozlišča ne kontaminirajo ponovno, medtem ko
+          kofeinirani model ni monoton, saj se vozlišče 2 v 3. koraku ponovno kontaminira.
+        </p>
+        <div class="intro-viz-row">
+          <div class="intro-viz-label">Vljuden model</div>
+          <img src="../gif/polite.gif" alt="Vljudna animacija" class="intro-viz-gif">
+        </div>
+        <div class="intro-viz-row" style="margin-top:14px;">
+          <div class="intro-viz-label">Kofeiniran model</div>
+          <img src="../gif/caffeinated.gif" alt="Kofeinirana animacija" class="intro-viz-gif">
+        </div>
+      </div>
+
+      <!-- Desni stolpec: mreže + kaj aplikacija ponuja -->
+      <div class="intro-col">
+        <h3 style="margin-top: 0;">Trikotniške mreže</h3>
+        <p class="sub" style="line-height:1.55;">
+          Aplikacija obravnava štiri oblike grafov, ki vsi uporabljajo identično
+          <strong>trikotniško topologijo sosedov</strong> (vsako notranje vozlišče
+          ima 6 sosedov: levo/desno + štiri diagonale):
+        </p>
+        <ul style="line-height:1.55;">
+          <li><strong>P<sub>n</sub></strong> — enakostranični trikotnik s stranico dolžine <em>n</em>,
+            razdeljen na manjše enakostranične trikotnike.</li>
+          <li><strong>R<sub>n,l</sub></strong> — paralelogram višine <em>n</em> in dolžine <em>l</em> vozlišč,
+            razdeljen na manjše enakostranične trikotnike.</li>
+          <li><strong>Krog</strong> — izrez standardne trikotniške mreže krog s
+            polmerom <em>R<sub>out</sub></em>.</li>
+          <li><strong>Kolobar</strong> — krog s polmerom <em>R<sub>out</sub></em> z izrezanim notranjim krogom s
+            polmerom <em>R<sub>in</sub></em>.</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5em;">Kaj ponuja aplikacija</h3>
+        <ul style="line-height:1.55;">
+          <li><strong>Rezultati</strong> — pregled rezultatov iskanja minimalega števila levov za čiščenje trikotniške
+            mreže <em>P<sub>n</sub></em> za <em>n = 3 … 8</em>, ločeno po štirih modelih:
+            pasovnem, monotonem, vljudnem in kofeiniranem. Za vsako rešitev je shranjen tudi čas iskanja
+            (<code>final_solutions/times.json</code>).</li>
+          <li><strong>Interaktivna igra</strong> — sami postavite leve in jih premikate.
+            Podprta sta grafa <em>P<sub>n</sub></em> in <em>R<sub>n,l</sub></em>
+            (n, l = 3 … 8) ter trije modeli: vljuden, kofeiniran in monoton.</li>
+          <li><strong>Konstrukcije iz literature</strong> — deterministično čiščenje mrež po
+            opisu iz članka Adams et al.: <em>pasovno čiščenje</em> in <em>kofeinirana stena trikotnikov</em> na
+            trikotniški <em>P<sub>n</sub></em> in paralelogamski mreži <em>R<sub>n,l</sub></em>.</li>
+          <li><strong>Razširitve</strong> — eksperimentalno raziskovanje
+            <em>naključnih premikanj</em> na vseh štirih grafih (<em>P<sub>n</sub></em>,
+            <em>R<sub>n,l</sub></em>, krog, kolobar). Štiri strategije
+            premikanj: naključna (vsak korak naključen), brez prekrivanja
+            (naključna z reroll-om pri trkih), proti kontaminaciji
+            (izbran naklčjučen izmed premikov, ki najbolj približajo leva najbližjemu kontaminiranemu
+            vozlišču) in nagrajevalna (vsako možno potezo bot 1 korak vnaprej simulira
+            in jo oceni: nagradi očiščene celice, kaznuje ponovno kontaminacijo in
+            velik rob kontaminiranega območja ter izbere potezo z najvišjo oceno).
+            Vsaka strategija deluje za vljudni in kofeinirani
+            model, simulacija pa se ustavi po 500 korakih.</li>
+        </ul>
+
+        <p class="sub" style="margin-top: 1.5em; line-height:1.55;">
+          Glavni referenci:
+        </p>
+        <ul style="line-height:1.55;" class="sub">
+          <li>Adams, Gibson, Pfaffinger,
+            <em>Lions and contamination, triangular grids, and Cheeger constants</em> (2021).</li>
+          <li>Bertschinger, Mallik Reddy, Mann,
+            <em>Lions and Contamination: Monotone Clearings</em> (ETH Zürich, SWAT 2022).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MENU ============ -->
+<div id="page-menu" class="page">
+  <header class="bar">
+    <button class="btn-ghost" id="menu-back" style="margin-right:16px"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Nazaj</button>
+    <div>
+      <h1>Rezultati</h1>
+    </div>
+    <div class="spacer"></div>
+  </header>
+
+  <div class="filters">
+    <div class="row">
+      <div class="section-label">Strategija</div>
+      <div id="strategy-chips"></div>
+    </div>
+    <div class="row">
+      <div class="section-label">Velikost n</div>
+      <div id="n-chips"></div>
+    </div>
+  </div>
+
+  <div class="card-outer">
+    <div class="card"><div class="card-inner">
+      <table>
+        <thead><tr>
+          <th>Strategija</th><th class="center">n</th>
+          <th class="center">Levi</th><th class="center">Koraki</th>
+        </tr></thead>
+        <tbody id="sol-rows"></tbody>
+      </table>
+    </div></div>
+  </div>
+
+  <div class="bottombar">
+    <span class="status" id="menu-status"></span>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="open-viz">Odpri simulacijo&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+
+  <div class="menu-times-plot">
+    <h3>Čas iskanja po strategijah</h3>
+    <img src="../times_plot.png?v=1"
+         alt="Graf časov iskanja po strategijah in velikosti n"
+         class="menu-times-img">
+  </div>
+</div>
+
+<!-- ============ VIZUALIZATOR ============ -->
+<div id="page-viz" class="page">
+  <div class="topbar">
+    <button class="btn-ghost" id="viz-back"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Nazaj</button>
+    <span class="title" id="viz-title"></span>
+    <div class="spacer"></div>
+    <span class="hint">Hitrost</span>
+    <input type="range" id="viz-speed" min="0" max="1" step="0.001" value="0.2" />
+  </div>
+  <div class="topbar" style="padding-top:0">
+    <div class="spacer"></div>
+    <span class="hint">presledek play/pause &nbsp; →/← korak &nbsp; r reset</span>
+  </div>
+  <div class="stage"><svg class="board" id="viz-board"></svg></div>
+</div>
+
+<!-- ============ NASTAVITEV IGRE ============ -->
+<div id="page-setup" class="page">
+  <div class="topbar">
+    <button class="btn-ghost" id="setup-back"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Nazaj</button>
+    <span class="title">Interaktivna igra</span>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="setup-go">Postavi leve&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+  <div class="filters" style="padding-top:10px">
+    <div class="sub" style="margin-bottom:18px">
+      Izberi velikost mreže, število levov in način. Nato leve sam postaviš in premikaš.
+    </div>
+    <div class="row"><div class="section-label">Graf</div><div id="setup-graph"></div></div>
+    <div class="row"><div class="section-label">Velikost n</div><div id="setup-n"></div></div>
+    <div class="row"><div class="section-label">Dolžina l</div><div id="setup-l"></div></div>
+    <div class="row"><div class="section-label">Način</div><div id="setup-mode"></div></div>
+    <div class="status" id="setup-info"></div>
+  </div>
+</div>
+
+<!-- ============ KONSTRUKCIJE IZ LITERATURE ============ -->
+<div id="page-literature" class="page">
+  <div class="topbar">
+    <button class="btn-ghost" id="lit-back"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Nazaj</button>
+    <span class="title">Konstrukcije iz literature</span>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="lit-run">Zaženi simulacijo&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+  <div class="filters" style="padding-top:10px">
+    <div class="sub" style="margin-bottom:18px">
+      Eksplicitni konstrukciji po Adams&ndash;Gibson&ndash;Pfaffinger (2021). Najprej izberi <strong>strategijo</strong>, nato <strong>graf</strong>, in nazadnje velikost.
+    </div>
+    <div class="row"><div class="section-label">Strategija</div><div id="lit-kind"></div></div>
+    <div class="row"><div class="section-label">Graf</div><div id="lit-graph"></div></div>
+    <div class="row"><div class="section-label">Velikost n</div><div id="lit-n"></div></div>
+    <div class="row"><div class="section-label">Dolžina l</div><div id="lit-l"></div></div>
+    <div class="status" id="lit-info"></div>
+  </div>
+</div>
+
+<!-- ============ IGRA ============ -->
+<div id="page-game" class="page">
+  <div class="topbar">
+    <button class="btn-ghost" id="game-back"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Nazaj</button>
+    <span class="title" id="game-title"></span>
+    <div class="spacer"></div>
+    <div class="controls" id="game-controls"></div>
+  </div>
+  <div class="topbar" style="padding-top:0">
+    <span class="hint" id="game-status"></span>
+  </div>
+  <div class="stage"><svg class="board" id="game-board"></svg></div>
+</div>
+
+<!-- ============ RAZŠIRITVE — nastavitev ============ -->
+<div id="page-extensions" class="page">
+  <div class="topbar">
+    <button class="btn-ghost" id="ext-back"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Nazaj</button>
+    <span class="title">Razširitve</span>
+    <div class="spacer"></div>
+    <button class="btn-primary" id="ext-go">Postavi leve&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+  <div class="filters" style="padding-top:10px">
+    <div class="sub" style="margin-bottom:18px">
+      Eksperimentalno: drugi grafi in naključni boti. Izberi <strong>graf</strong>,
+      <strong>velikost</strong>, <strong>število levov</strong>, <strong>model</strong> in <strong>strategijo bota</strong>.
+    </div>
+    <div class="row"><div class="section-label">Graf</div><div id="ext-graph"></div></div>
+    <div class="row"><div class="section-label">Velikost n (krog)</div><div id="ext-n"></div></div>
+    <div class="row"><div class="section-label">Obroči R (kolobar)</div><div id="ext-disk-R"></div></div>
+    <div class="row"><div class="section-label">Vozlišča na obroč N</div><div id="ext-disk-N"></div></div>
+    <div class="row"><div class="section-label">Notranji izrez H</div><div id="ext-disk-H"></div></div>
+    <div class="row"><div class="section-label">Model</div><div id="ext-mode"></div></div>
+    <div class="row"><div class="section-label">Strategija bota</div><div id="ext-bot"></div></div>
+    <div class="status" id="ext-info"></div>
+  </div>
+</div>
+
+<!-- ============ RAZŠIRITVE — igra ============ -->
+<div id="page-extensions-game" class="page">
+  <div class="topbar">
+    <button class="btn-ghost" id="extg-back"><i class="fa-solid fa-arrow-left"></i>&nbsp;&nbsp;Nazaj</button>
+    <span class="title" id="extg-title"></span>
+    <div class="spacer"></div>
+    <div class="controls" id="extg-controls"></div>
+  </div>
+  <div class="topbar" style="padding-top:0">
+    <span class="hint" id="extg-status"></span>
+  </div>
+  <div class="stage"><svg class="board" id="extg-board"></svg></div>
+</div>
+
+<script src="js/core.js?v=13"></script>
+<script src="js/visualizer.js?v=7"></script>
+<script src="js/random_bot.js?v=5"></script>
+<script src="js/game.js?v=8"></script>
+<script src="js/lit_strip_parallelogram.js?v=12"></script>
+<script src="js/lit_caffeinated_wall.js?v=14"></script>
+<script src="js/ui.js?v=33"></script>
+</body>
+</html>

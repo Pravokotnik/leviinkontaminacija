@@ -1,0 +1,30 @@
+{
+  "strategy": "caffeinated",
+  "n": 3,
+  "k": 3,
+  "steps": 3,
+  "success": true,
+  "search_status": "[caffeinated] n=3: k=3 FEASIBLE (non-stacked).",
+  "initial_positions": [
+    3,
+    4,
+    5
+  ],
+  "moves": [
+    [
+      1,
+      2,
+      4
+    ],
+    [
+      0,
+      4,
+      2
+    ],
+    [
+      2,
+      5,
+      0
+    ]
+  ]
+}

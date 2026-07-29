@@ -1,0 +1,52 @@
+{
+  "strategy": "strip",
+  "n": 4,
+  "k": 4,
+  "steps": 6,
+  "success": true,
+  "search_status": "[strip] n=4: DOKAZANO po konstrukciji: k=4 (deterministični sweep, brez iskanja/MAX_STATES; k=n je zgornja meja).",
+  "initial_positions": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "moves": [
+    [
+      3,
+      7,
+      8,
+      9
+    ],
+    [
+      3,
+      4,
+      8,
+      9
+    ],
+    [
+      3,
+      4,
+      5,
+      9
+    ],
+    [
+      1,
+      4,
+      5,
+      9
+    ],
+    [
+      1,
+      2,
+      5,
+      9
+    ],
+    [
+      0,
+      2,
+      5,
+      9
+    ]
+  ]
+}
