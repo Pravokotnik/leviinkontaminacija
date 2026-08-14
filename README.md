@@ -34,12 +34,15 @@ Rezultati se sproti shranijo v `final_solutions/`:
 
 ## Spletna aplikacija
 
-Bere rešitve neposredno iz `final_solutions/`, zato strežnik poženi iz mape
-`simulator/` (ne iz `web/`):
+Bere rešitve neposredno iz `final_solutions/`, zato strežnik poženi iz korenske mape projekta:
 
 ```bash
-python -m http.server 8000
+python3 -m http.server 8000
 ```
+
+Ime ukaza je odvisno od operacijskega sistema — na macOS/Linuxu je praviloma
+`python3`, na Windows pa `python`. Če eden ne deluje, poskusi drugega; enako
+velja za vse ostale ukaze v tem dokumentu.
 
 Nato odpri <http://localhost:8000/web/>.
 

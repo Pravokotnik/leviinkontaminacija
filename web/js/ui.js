@@ -151,6 +151,7 @@ function ctrlBtn(label, ghost, onClick) {
 function onGameState(g) {
   const c = document.getElementById("game-controls"); c.innerHTML = "";
   if (g.phase === "placing") {
+    c.appendChild(ctrlBtn('Počisti', true, () => g.clear()));
     c.appendChild(ctrlBtn('Začni igro&nbsp;<i class="fa-solid fa-play"></i>', false, () => g.start()));
   } else if (g.phase === "playing") {
     if (!g.autoStep) {
@@ -296,7 +297,7 @@ function onExtensionsGameState(g) {
       'Začni simulacijo&nbsp;<i class="fa-solid fa-play"></i>', false,
       () => runExtensionsBotSimulation(g)
     ));
-    c.appendChild(ctrlBtn('Počisti', true, () => { g.lions = []; g.render(); }));
+    c.appendChild(ctrlBtn('Počisti', true, () => g.clear()));
   } else {
     // fallback reset gumb
     c.appendChild(ctrlBtn('Nova postavitev', true, () => g.reset()));

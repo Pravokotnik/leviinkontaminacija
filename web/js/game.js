@@ -18,6 +18,7 @@ class Game {
     this.lions = []; this.contam = new Set(); this.pending = [];
     this.selected = null; this.phase = "placing"; this.step = 0;
     this.message = ""; this.history = [];
+    this.initialLions = [];  // zadnja potrjena začetna postavitev (za 'Nova postavitev')
     this.lastLE = new Set(); this.lastCE = new Set();
     this.onChange = null;
     setupBoard(svg, this.graph);
@@ -88,6 +89,7 @@ class Game {
     if (this.phase !== "placing" || this.lions.length === 0) { this.render(); this._notify(); return; }
     // zakleni k
     this.k = this.lions.length;
+    this.initialLions = this.lions.slice();
     this.phase = "playing"; this.step = 0; this.message = ""; this.history = [];
     this.contam = contamOf(this.graph, this.lions);
     this.pending = this.lions.slice(); this.selected = null;
@@ -125,10 +127,18 @@ class Game {
     this.message = ""; this.lastLE = new Set(); this.lastCE = new Set();
     this.render(); this._notify();
   }
+  // Vrne v postavljanje s prejšnjo začetno postavitvijo in odklenjenim številom
+  // levov, da lahko igralec leve samo dodaja/odstranjuje.
   reset() {
-    this.phase = "placing"; this.lions = []; this.contam = new Set();
+    this.phase = "placing"; this.lions = this.initialLions.slice(); this.k = null;
+    this.contam = new Set();
     this.pending = []; this.selected = null; this.step = 0; this.message = "";
     this.history = []; this.lastLE = new Set(); this.lastCE = new Set();
+    this.render(); this._notify();
+  }
+  clear() {
+    if (this.phase !== "placing") return;
+    this.lions = []; this.k = null;
     this.render(); this._notify();
   }
 
