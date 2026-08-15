@@ -34,7 +34,7 @@ Rezultati se sproti shranijo v `final_solutions/`:
 
 ## Spletna aplikacija
 
-Bere rešitve neposredno iz `final_solutions/`, zato strežnik poženi iz korenske mape projekta:
+Strežnik je potrebno pognati iz korenske mape projekta:
 
 ```bash
 python3 -m http.server 8000

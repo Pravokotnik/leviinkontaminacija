@@ -146,7 +146,8 @@ class Game {
     const m = MODE_LABELS[this.mode];
     if (this.phase === "placing") {
       const cap = (this.k != null) ? `/${this.k}` : ` (poljubno število)`;
-      return `[${m}]  Postavljanje levov: ${this.lions.length}${cap} — klikni vozlišča (ponovni klik odstrani). Nato 'Začni igro'.`;
+      const startBtn = this.bot ? "Začni simulacijo" : "Začni igro";
+      return `[${m}]  Postavljanje levov: ${this.lions.length}${cap} — klikni vozlišča (ponovni klik odstrani). Nato '${startBtn}'.`;
     }
     if (this.phase === "won") return `[${m}]  Zmaga! Graf očiščen v ${this.step} korakih.`;
     if (this.phase === "lost") return `[${m}]  Konec: ponovna kontaminacija v koraku ${this.step} — monotonost kršena.`;

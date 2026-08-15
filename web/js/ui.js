@@ -293,11 +293,11 @@ function startExtensionsGame() {
 function onExtensionsGameState(g) {
   const c = document.getElementById("extg-controls"); c.innerHTML = "";
   if (g.phase === "placing") {
+    c.appendChild(ctrlBtn('Počisti', true, () => g.clear()));
     c.appendChild(ctrlBtn(
       'Začni simulacijo&nbsp;<i class="fa-solid fa-play"></i>', false,
       () => runExtensionsBotSimulation(g)
     ));
-    c.appendChild(ctrlBtn('Počisti', true, () => g.clear()));
   } else {
     // fallback reset gumb
     c.appendChild(ctrlBtn('Nova postavitev', true, () => g.reset()));
@@ -309,8 +309,9 @@ function onExtensionsGameState(g) {
 // Simulira bot do konca in odpre rezultat v Vizualizatorju.
 function runExtensionsBotSimulation(g) {
   if (g.phase !== "placing" || g.lions.length === 0) return;
-  // zakleni k na dejansko število levov
-  g.k = g.lions.length;
+  // k je le podatek za vizualizator; g.k pustimo odklenjen, da lahko po vrnitvi
+  // na ploščo leve še dodajaš/odstranjuješ
+  const k = g.lions.length;
   const graph = g.graph;
   const initial_positions = g.lions.slice();
   let lions = initial_positions.slice();
@@ -328,7 +329,7 @@ function runExtensionsBotSimulation(g) {
     graph_type: g.graphType,
     n: g.n,
     l: g.l,
-    k: g.k,
+    k,
     initial_positions,
     moves,
   };
@@ -336,7 +337,7 @@ function runExtensionsBotSimulation(g) {
     data.R_out = graph.R_out;
     data.R_in  = graph.R_in;
   }
-  vizReturnTo = "page-extensions";
+  vizReturnTo = "page-extensions-game";
   openVizFromData(data);
 }
 
