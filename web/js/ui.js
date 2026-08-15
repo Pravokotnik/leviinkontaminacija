@@ -95,6 +95,9 @@ function openVizFromData(data) {
   const svg = document.getElementById("viz-board");
   svg.innerHTML = "";
   viz = new Visualizer(svg, data, document.getElementById("viz-title"));
+  const newSetupBtn = document.getElementById("viz-new-setup");
+  if (newSetupBtn)
+    newSetupBtn.style.display = (vizReturnTo === "page-extensions-game") ? "" : "none";
   showPage("page-viz");
 }
 
@@ -154,12 +157,13 @@ function onGameState(g) {
     c.appendChild(ctrlBtn('Počisti', true, () => g.clear()));
     c.appendChild(ctrlBtn('Začni igro&nbsp;<i class="fa-solid fa-play"></i>', false, () => g.start()));
   } else if (g.phase === "playing") {
-    if (!g.autoStep) {
-      c.appendChild(ctrlBtn('Korak naprej&nbsp;<i class="fa-solid fa-arrow-right"></i>', false, () => g.commit()));
+    if (!g.autoStep)
       c.appendChild(ctrlBtn('Ponastavi potezo&nbsp;<i class="fa-solid fa-redo"></i>', true, () => g.resetMove()));
-    }
     if (g.canUndo()) c.appendChild(ctrlBtn('<i class="fa-solid fa-arrow-left"></i>&nbsp;Korak nazaj&nbsp;', true, () => g.undo()));
     c.appendChild(ctrlBtn('Nova postavitev&nbsp;', true, () => g.reset()));
+    // glavni gumb skrajno desno (enako kot 'Začni igro' pri postavljanju)
+    if (!g.autoStep)
+      c.appendChild(ctrlBtn('Korak naprej&nbsp;<i class="fa-solid fa-arrow-right"></i>', false, () => g.commit()));
   } else {
     c.appendChild(ctrlBtn("Nova postavitev", true, () => g.reset()));
   }
@@ -465,6 +469,9 @@ document.getElementById("lit-back").onclick = () => showPage("page-landing");
 document.getElementById("lit-run").onclick = runLiterature;
 document.getElementById("open-viz").onclick = () => { if (selectedFile) { vizReturnTo = "page-menu"; openViz(selectedFile); } };
 document.getElementById("viz-back").onclick = () => { if (viz) viz.stop(); showPage(vizReturnTo); };
+const vizNewSetupBtn = document.getElementById("viz-new-setup");
+if (vizNewSetupBtn)
+  vizNewSetupBtn.onclick = () => { if (viz) viz.stop(); showPage("page-extensions-game"); };
 document.getElementById("setup-back").onclick = () => showPage("page-landing");
 document.getElementById("setup-go").onclick = startGame;
 document.getElementById("game-back").onclick = () => showPage("page-setup");
