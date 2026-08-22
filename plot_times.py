@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 
 STRATEGIES = ["polite", "monotone", "caffeinated"]
 
@@ -42,6 +43,8 @@ def plot_strategy(ax, strat):
 
     ax.set_title(SLO_TITLES.get(strat, strat))
     ax.set_xlabel("k (število levov)")
+    # k je vedno celo število -> celoštevilske oznake na osi x pri vseh strategijah
+    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.set_ylabel("čas [s]")
     ax.grid(True, alpha=0.3)
     ax.legend(title="n (velikost grafa)")

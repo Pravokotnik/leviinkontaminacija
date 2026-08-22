@@ -25,6 +25,16 @@ razpon `n`, ki ju želiš pognati, nato:
 python main.py
 ```
 
+oziroma
+
+```bash
+python3 main.py
+```
+
+Ime ukaza je odvisno od operacijskega sistema — na macOS/Linuxu je praviloma
+`python3`, na Windows pa `python`. Če eden ne deluje, poskusi drugega; enako
+velja za vse ostale ukaze v tem dokumentu.
+
 Rezultati se sproti shranijo v `final_solutions/`:
 
 - **ena JSON datoteka na najdeno rešitev** — `strategy`, `n`, `k`, `steps`,
@@ -37,12 +47,14 @@ Rezultati se sproti shranijo v `final_solutions/`:
 Strežnik je potrebno pognati iz korenske mape projekta:
 
 ```bash
-python3 -m http.server 8000
+python -m http.server 8000
 ```
 
-Ime ukaza je odvisno od operacijskega sistema — na macOS/Linuxu je praviloma
-`python3`, na Windows pa `python`. Če eden ne deluje, poskusi drugega; enako
-velja za vse ostale ukaze v tem dokumentu.
+oziroma
+
+```bash
+python3 -m http.server 8000
+```
 
 Nato odpri <http://localhost:8000/web/>.
 
@@ -50,6 +62,12 @@ Nato odpri <http://localhost:8000/web/>.
 
 ```bash
 python plot_times.py
+```
+
+oziroma 
+
+```bash
+python3 plot_times.py
 ```
 
 Shrani združeno sliko in tri ločene (`times_polite.png`, `times_monotone.png`,
